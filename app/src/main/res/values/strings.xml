@@ -11,4 +11,9 @@
     <string name="login">Login</string>
     <string name="reg_text">New User? Register Here</string>
     <string name="reset_text">Forgot password? Reset Here</string>
+    <string name="verification_code">Verification Code</string>
+    <string name="verify">Verify</string>
+    <string name="enter_verification_code">Enter verification code</string>
+    <string name="password_reset_email_instructions">You will receive password reset instructions in the email</string>
+    <string name="confirm">Confirm</string>
 </resources>

@@ -1,9 +1,6 @@
-package com.xandria.tech.activity.user;
+package com.xandria_del.tech.activity.user;
 
 import static android.content.ContentValues.TAG;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -20,6 +17,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,13 +29,14 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.hbb20.CountryCodePicker;
-import com.xandria.tech.R;
-import com.xandria.tech.constants.FirebaseRefs;
-import com.xandria.tech.model.User;
+import com.xandria_del.tech.R;
+import com.xandria_del.tech.constants.FirebaseRefs;
+import com.xandria_del.tech.model.User;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
+
 
 public class RegistrationActivity extends AppCompatActivity {
     private TextInputEditText username, email, password, confirmPwd;

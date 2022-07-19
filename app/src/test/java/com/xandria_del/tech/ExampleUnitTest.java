@@ -1,4 +1,4 @@
-package com.xandria.tech;
+package com.xandria_del.tech;
 
 import org.junit.Test;
 

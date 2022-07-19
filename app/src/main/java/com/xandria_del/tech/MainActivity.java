@@ -1,8 +1,9 @@
-package com.xandria.tech;
+package com.xandria_del.tech;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
 
 public class MainActivity extends AppCompatActivity {
 

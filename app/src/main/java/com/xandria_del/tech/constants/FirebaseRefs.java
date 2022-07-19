@@ -1,4 +1,4 @@
-package com.xandria.tech.constants;
+package com.xandria_del.tech.constants;
 
 /*
 put all the firebase database references in one place for easy access

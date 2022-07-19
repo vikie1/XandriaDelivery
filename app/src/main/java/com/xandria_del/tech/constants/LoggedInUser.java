@@ -1,4 +1,4 @@
-package com.xandria.tech.constants;
+package com.xandria_del.tech.constants;
 
 import android.content.Context;
 import android.widget.Toast;
@@ -11,7 +11,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.xandria.tech.model.User;
+import com.xandria_del.tech.model.User;
 
 import java.util.Objects;
 

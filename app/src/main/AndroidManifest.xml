@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.xandria.tech">
+    package="com.xandria_del.tech">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -21,13 +21,13 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".activity.user.LoginActivity"
+            android:name="com.xandria_del.tech.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.user.RegistrationActivity"
+            android:name="com.xandria_del.tech.activity.user.RegistrationActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.xandria_del.tech.activity.user.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

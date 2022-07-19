@@ -1,4 +1,4 @@
-package com.xandria.tech.activity.user;
+package com.xandria_del.tech.activity.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,9 +16,9 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.xandria.tech.MainActivity;
-import com.xandria.tech.R;
-import com.xandria.tech.constants.LoggedInUser;
+import com.xandria_del.tech.MainActivity;
+import com.xandria_del.tech.R;
+import com.xandria_del.tech.constants.LoggedInUser;
 
 import java.util.Objects;
 

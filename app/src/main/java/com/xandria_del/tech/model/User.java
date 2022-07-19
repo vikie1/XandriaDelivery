@@ -1,4 +1,4 @@
-package com.xandria.tech.model;
+package com.xandria_del.tech.model;
 
 public class User {
     private String name;
