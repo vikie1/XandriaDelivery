@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Xandria Delivery</string>
+    <string name="reg_string">Already Registered? Login Here</string>
+    <string name="register">Register</string>
+    <string name="confirm_your_password">Confirm your Password</string>
+    <string name="enter_your_password">Enter your Password</string>
+    <string name="enter_your_email">Enter your Email</string>
+    <string name="enter_your_name">Enter your Name</string>
+    <string name="xandria">Xandria</string>
+    <string name="contact">Contact</string>
 </resources>
