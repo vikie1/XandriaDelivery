@@ -36,6 +36,6 @@
         android:textAlignment="viewEnd"
         android:textAllCaps="true"
         android:textColor="@color/white"
+        android:id="@+id/activity_label"
         android:textSize="22sp" />
-
 </LinearLayout>

@@ -27,13 +27,13 @@
         <item name="android:background">@drawable/round_drawable</item>
     </style>
 
-    <style name="Theme.Xandria.NoActionBar">
+    <style name="Theme.XandriaDelivery.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
 
-    <style name="Theme.Xandria.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.XandriaDelivery.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="Theme.Xandria.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.XandriaDelivery.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -8,9 +8,12 @@
         <entry key="app/src/main/res/drawable/round_drawable.xml" value="0.1715" />
         <entry key="app/src/main/res/font/major_mono_display.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/font/play.xml" value="0.22239583333333332" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.17028985507246377" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17028985507246377" />
         <entry key="app/src/main/res/layout/activity_registration.xml" value="0.17028985507246377" />
         <entry key="app/src/main/res/layout/head_section_layout.xml" value="0.17028985507246377" />
+        <entry key="app/src/main/res/layout/phone_verification.xml" value="0.17028985507246377" />
+        <entry key="app/src/main/res/layout/request_email_layout.xml" value="0.17028985507246377" />
       </map>
     </option>
   </component>

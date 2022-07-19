@@ -8,4 +8,7 @@
     <string name="enter_your_name">Enter your Name</string>
     <string name="xandria">Xandria</string>
     <string name="contact">Contact</string>
+    <string name="login">Login</string>
+    <string name="reg_text">New User? Register Here</string>
+    <string name="reset_text">Forgot password? Reset Here</string>
 </resources>
