@@ -16,4 +16,8 @@
     <string name="enter_verification_code">Enter verification code</string>
     <string name="password_reset_email_instructions">You will receive password reset instructions in the email</string>
     <string name="confirm">Confirm</string>
+    <string name="GPSAlertDialogTitle">Allow Location Access</string>
+    <string name="GPSAlertDialogMessage">This app uses location permissions to get books near you</string>
+    <string name="action_settings">OK</string>
+    <string name="cancel">Cancel</string>
 </resources>
