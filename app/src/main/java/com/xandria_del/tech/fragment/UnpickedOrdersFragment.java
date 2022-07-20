@@ -69,20 +69,16 @@ public class UnpickedOrdersFragment extends Fragment {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 OrdersModel ordersModel;
-                OrdersListViewAdapter newListViewAdapter = new OrdersListViewAdapter(context, new ArrayList<>());
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
                     ordersModel = dataSnapshot.getValue(OrdersModel.class);
                     if (ordersModel != null && !ordersModel.isBookedForDelivery()
                         && ordersModel.getDropLocation() != null && ordersModel.getHostAddress() != null
                         && !ordersModel.getDropLocation().equals(ordersModel.getHostAddress())) { // if drop location is equal to host location then the order was meant for pick up not delivery
 
-                        if (!ordersModel.isBorrowConfirmed()) {
-                            newListViewAdapter.add(ordersModel);
-                            ordersListView.setAdapter(newListViewAdapter);
-                        } else ordersListView.setAdapter(listViewAdapter);
+                        if (!ordersModel.isBorrowConfirmed())
+                            listViewAdapter.add(ordersModel);
                     }
                 }
-                UnpickedOrdersFragment.this.listViewAdapter = newListViewAdapter;
             }
 
             @Override

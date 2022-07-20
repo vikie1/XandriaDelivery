@@ -21,7 +21,6 @@
         android:id="@+id/confirm_fab"
         android:visibility="gone"
         android:layout_gravity="bottom|end"
-        android:background="@color/marron_shade"
         android:src="@drawable/ic_baseline_add_task_24"
         android:contentDescription="@string/confirm" />
 </FrameLayout>

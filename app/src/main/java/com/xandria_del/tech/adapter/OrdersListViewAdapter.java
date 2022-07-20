@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.text.HtmlCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -25,6 +26,7 @@ import com.xandria_del.tech.util.DateUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 public class OrdersListViewAdapter extends ArrayAdapter<OrdersModel> {
 
@@ -60,16 +62,25 @@ public class OrdersListViewAdapter extends ArrayAdapter<OrdersModel> {
         ));
 
         if (order.isBorrowConfirmed()) selectedItem.setVisibility(View.GONE);
+        else if (order.isBookedForDelivery() &&
+                !order.getUserId().equals(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()))
+            selectedItem.setVisibility(View.GONE);
         else {
             if (order.isBookedForDelivery()) selectedItem.setText(getContext().getString(R.string.cancel));
 
             selectedItem.setOnClickListener(v -> {
                 DatabaseReference firebaseDatabaseReference = FirebaseDatabase.getInstance().getReference(FirebaseRefs.ORDERS);
+
+                if (order.isBookedForDelivery()) {
+                    order.setUserId("");
+                } else {
+                    order.setUserId(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());
+                }
+                order.setBookedForDelivery(!order.isBookedForDelivery());
                 firebaseDatabaseReference
                         .child(order.getOrderId())
                         .child(order.getBookId())
-                        .child("bookedForDelivery")
-                        .setValue(!order.isBookedForDelivery());
+                        .setValue(order);
 
                 selectedItem.setText(getContext().getString(R.string.cancel));
             });

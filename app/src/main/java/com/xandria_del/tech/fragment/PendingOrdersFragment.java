@@ -1,66 +1,152 @@
 package com.xandria_del.tech.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.xandria_del.tech.R;
+import com.xandria_del.tech.adapter.OrdersListViewAdapter;
+import com.xandria_del.tech.constants.FirebaseRefs;
+import com.xandria_del.tech.model.OrdersModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PendingOrdersFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 public class PendingOrdersFragment extends Fragment {
+    private List<OrdersModel> ordersList;
+    private OrdersListViewAdapter listViewAdapter;
+    private DatabaseReference firebaseDatabaseReference;
+    private ListView ordersListView;
+    private String user;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public PendingOrdersFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PendingOrdersFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static PendingOrdersFragment newInstance(String param1, String param2) {
-        PendingOrdersFragment fragment = new PendingOrdersFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private Context context;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pending_orders, container, false);
+        View mainView = inflater.inflate(R.layout.fragment_pending_orders, container, false);
+
+        firebaseDatabaseReference = FirebaseDatabase.getInstance().getReference(FirebaseRefs.ORDERS);
+        user = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();
+
+        // set up the the listview
+        ordersList = new ArrayList<>();
+        listViewAdapter = new OrdersListViewAdapter(context, new ArrayList<>());
+        ordersListView = mainView.findViewById(R.id.orders_list);
+        ordersListView.setAdapter(listViewAdapter);
+
+        // action performed when a list item is clicked
+        ordersListView.setOnItemClickListener((parent, view, position, id) -> {
+            OrdersModel order = listViewAdapter.getItem(position);
+            if (ordersList.contains(order))
+                ordersList.remove(order);
+            else ordersList.add(listViewAdapter.getItem(position));
+        });
+
+        getOrdersFromDb();
+        return mainView;
+    }
+
+    private void getOrdersFromDb(){
+        listViewAdapter.clear();
+
+        firebaseDatabaseReference.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                OrdersModel ordersModel;
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
+                    ordersModel = dataSnapshot.getValue(OrdersModel.class);
+                    if (ordersModel != null &&
+                            ordersModel.isBookedForDelivery() &&
+                            user.equals(ordersModel.getUserId())) {
+                        if (!ordersModel.isBorrowConfirmed())
+                            listViewAdapter.add(ordersModel);
+                    }
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                OrdersModel ordersModel;
+                OrdersListViewAdapter newListViewAdapter = new OrdersListViewAdapter(context, new ArrayList<>());
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
+                    ordersModel = dataSnapshot.getValue(OrdersModel.class);
+                    if (ordersModel != null &&
+                            ordersModel.isBookedForDelivery()&&
+                            user.equals(ordersModel.getUserId())) {
+                        if (!ordersModel.isBorrowConfirmed()) {
+                            newListViewAdapter.add(ordersModel);
+                            ordersListView.setAdapter(newListViewAdapter);
+                        } else ordersListView.setAdapter(listViewAdapter);
+                    }
+                }
+                PendingOrdersFragment.this.listViewAdapter = newListViewAdapter;
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                OrdersModel ordersModel;
+                OrdersListViewAdapter newListViewAdapter = new OrdersListViewAdapter(context, new ArrayList<>());
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
+                    ordersModel = dataSnapshot.getValue(OrdersModel.class);
+                    if (ordersModel != null &&
+                            ordersModel.isBookedForDelivery() &&
+                            user.equals(ordersModel.getUserId())) {
+                        if (!ordersModel.isBorrowConfirmed()) {
+                            newListViewAdapter.add(ordersModel);
+                            ordersListView.setAdapter(newListViewAdapter);
+                        } else ordersListView.setAdapter(listViewAdapter);
+                    }
+                }
+                PendingOrdersFragment.this.listViewAdapter = newListViewAdapter;
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                OrdersModel ordersModel;
+                OrdersListViewAdapter newListViewAdapter = new OrdersListViewAdapter(context, new ArrayList<>());
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
+                    ordersModel = dataSnapshot.getValue(OrdersModel.class);
+                    if (ordersModel != null &&
+                            ordersModel.isBookedForDelivery() &&
+                            user.equals(ordersModel.getUserId())) {
+                        if (!ordersModel.isBorrowConfirmed()) {
+                            newListViewAdapter.add(ordersModel);
+                            ordersListView.setAdapter(newListViewAdapter);
+                        } else ordersListView.setAdapter(listViewAdapter);
+                    }
+                }
+                PendingOrdersFragment.this.listViewAdapter = newListViewAdapter;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

@@ -74,24 +74,13 @@ public class PickedOrdersFragment extends Fragment {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 OrdersModel ordersModel;
-                OrdersListViewAdapter newListViewAdapter = new OrdersListViewAdapter(context, new ArrayList<>());
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
                     ordersModel = dataSnapshot.getValue(OrdersModel.class);
                     if (ordersModel != null && ordersModel.isBookedForDelivery()) {
                         if (!ordersModel.isBorrowConfirmed())
-                            newListViewAdapter.add(ordersModel);
-                        else if (ordersModel.isBorrowConfirmed() &&
-                                LocalDate.now()
-                                .toString()
-                                .equals(LocalDateTime.parse(ordersModel.getDateOrdered()) // orders delivered today can be added here
-                                        .toLocalDate()
-                                        .toString())){
-                            newListViewAdapter.add(ordersModel);
-                        }
-                        ordersListView.setAdapter(newListViewAdapter);
-                    } else ordersListView.setAdapter(listViewAdapter);
+                            listViewAdapter.add(ordersModel);
+                    }
                 }
-                PickedOrdersFragment.this.listViewAdapter = newListViewAdapter;
             }
 
             @Override
@@ -101,18 +90,11 @@ public class PickedOrdersFragment extends Fragment {
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
                     ordersModel = dataSnapshot.getValue(OrdersModel.class);
                     if (ordersModel != null && ordersModel.isBookedForDelivery()) {
-                        if (!ordersModel.isBorrowConfirmed())
+                        if (!ordersModel.isBorrowConfirmed()) {
                             newListViewAdapter.add(ordersModel);
-                        else if (ordersModel.isBorrowConfirmed() &&
-                                LocalDate.now()
-                                        .toString()
-                                        .equals(LocalDateTime.parse(ordersModel.getDateOrdered()) // orders delivered today can be added here
-                                                .toLocalDate()
-                                                .toString())){
-                            newListViewAdapter.add(ordersModel);
-                        }
-                        ordersListView.setAdapter(newListViewAdapter);
-                    } else ordersListView.setAdapter(listViewAdapter);
+                            ordersListView.setAdapter(newListViewAdapter);
+                        } else ordersListView.setAdapter(listViewAdapter);
+                    }
                 }
                 PickedOrdersFragment.this.listViewAdapter = newListViewAdapter;
             }
@@ -124,18 +106,11 @@ public class PickedOrdersFragment extends Fragment {
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
                     ordersModel = dataSnapshot.getValue(OrdersModel.class);
                     if (ordersModel != null && ordersModel.isBookedForDelivery()) {
-                        if (!ordersModel.isBorrowConfirmed())
+                        if (!ordersModel.isBorrowConfirmed()) {
                             newListViewAdapter.add(ordersModel);
-                        else if (ordersModel.isBorrowConfirmed() &&
-                                LocalDate.now()
-                                        .toString()
-                                        .equals(LocalDateTime.parse(ordersModel.getDateOrdered()) // orders delivered today can be added here
-                                                .toLocalDate()
-                                                .toString())){
-                            newListViewAdapter.add(ordersModel);
-                        }
-                        ordersListView.setAdapter(newListViewAdapter);
-                    } else ordersListView.setAdapter(listViewAdapter);
+                            ordersListView.setAdapter(newListViewAdapter);
+                        } else ordersListView.setAdapter(listViewAdapter);
+                    }
                 }
                 PickedOrdersFragment.this.listViewAdapter = newListViewAdapter;
             }
@@ -147,18 +122,11 @@ public class PickedOrdersFragment extends Fragment {
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
                     ordersModel = dataSnapshot.getValue(OrdersModel.class);
                     if (ordersModel != null && ordersModel.isBookedForDelivery()) {
-                        if (!ordersModel.isBorrowConfirmed())
+                        if (!ordersModel.isBorrowConfirmed()) {
                             newListViewAdapter.add(ordersModel);
-                        else if (ordersModel.isBorrowConfirmed() &&
-                                LocalDate.now()
-                                        .toString()
-                                        .equals(LocalDateTime.parse(ordersModel.getDateOrdered()) // orders delivered today can be added here
-                                                .toLocalDate()
-                                                .toString())){
-                            newListViewAdapter.add(ordersModel);
-                        }
-                        ordersListView.setAdapter(newListViewAdapter);
-                    } else ordersListView.setAdapter(listViewAdapter);
+                            ordersListView.setAdapter(newListViewAdapter);
+                        } else ordersListView.setAdapter(listViewAdapter);
+                    }
                 }
                 PickedOrdersFragment.this.listViewAdapter = newListViewAdapter;
             }
