@@ -14,9 +14,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.text.HtmlCompat;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 import com.xandria_del.tech.R;
 import com.xandria_del.tech.activity.order.OrderRouteActivity;
+import com.xandria_del.tech.constants.FirebaseRefs;
 import com.xandria_del.tech.model.OrdersModel;
 import com.xandria_del.tech.util.DateUtils;
 
@@ -41,6 +44,7 @@ public class OrdersListViewAdapter extends ArrayAdapter<OrdersModel> {
         TextView deliveryContact = convertView.findViewById(R.id.delivery_contact);
         ImageView thumbnail = convertView.findViewById(R.id.book_image_in_list);
         Button showInMap = convertView.findViewById(R.id.show_in_map);
+        Button selectedItem = convertView.findViewById(R.id.select_btn);
 
         bookTitle.setText(HtmlCompat.fromHtml(
                 getContext().getString(R.string.book_title).concat(" ").concat(order.getBookTitle()),
@@ -54,6 +58,22 @@ public class OrdersListViewAdapter extends ArrayAdapter<OrdersModel> {
                 getContext().getString(R.string.drop_contact).concat(" ").concat(order.getDeliveryContact()),
                 HtmlCompat.FROM_HTML_MODE_COMPACT
         ));
+
+        if (order.isBorrowConfirmed()) selectedItem.setVisibility(View.GONE);
+        else {
+            if (order.isBookedForDelivery()) selectedItem.setText(getContext().getString(R.string.cancel));
+
+            selectedItem.setOnClickListener(v -> {
+                DatabaseReference firebaseDatabaseReference = FirebaseDatabase.getInstance().getReference(FirebaseRefs.ORDERS);
+                firebaseDatabaseReference
+                        .child(order.getOrderId())
+                        .child(order.getBookId())
+                        .child("bookedForDelivery")
+                        .setValue(!order.isBookedForDelivery());
+
+                selectedItem.setText(getContext().getString(R.string.cancel));
+            });
+        }
 
         showInMap.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), OrderRouteActivity.class);

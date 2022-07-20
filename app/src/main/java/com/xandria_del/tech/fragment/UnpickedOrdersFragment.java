@@ -28,8 +28,8 @@ public class UnpickedOrdersFragment extends Fragment {
     private List<OrdersModel> ordersList;
     private OrdersListViewAdapter listViewAdapter;
     private DatabaseReference firebaseDatabaseReference;
+    private ListView ordersListView;
 
-    private View view;
     private Context context;
 
     @Override
@@ -42,14 +42,14 @@ public class UnpickedOrdersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_unpicked_orders, container, false);
+        View view1 = inflater.inflate(R.layout.fragment_unpicked_orders, container, false);
 
         firebaseDatabaseReference = FirebaseDatabase.getInstance().getReference(FirebaseRefs.ORDERS);
 
         // set up the the listview
         ordersList = new ArrayList<>();
         listViewAdapter = new OrdersListViewAdapter(context, new ArrayList<>());
-        ListView ordersListView = view.findViewById(R.id.orders_list);
+        ordersListView = view1.findViewById(R.id.orders_list);
         ordersListView.setAdapter(listViewAdapter);
 
         // action performed when a list item is clicked
@@ -61,32 +61,34 @@ public class UnpickedOrdersFragment extends Fragment {
         });
 
         getOrdersFromDb();
-        return view;
+        return view1;
     }
 
-    void getOrdersFromDb(){
-        listViewAdapter.clear();
-
+    private void getOrdersFromDb(){
         firebaseDatabaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 OrdersModel ordersModel;
+                OrdersListViewAdapter newListViewAdapter = new OrdersListViewAdapter(context, new ArrayList<>());
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
                     ordersModel = dataSnapshot.getValue(OrdersModel.class);
                     if (ordersModel != null && !ordersModel.isBookedForDelivery()
                         && ordersModel.getDropLocation() != null && ordersModel.getHostAddress() != null
                         && !ordersModel.getDropLocation().equals(ordersModel.getHostAddress())) { // if drop location is equal to host location then the order was meant for pick up not delivery
 
-                        if (!ordersModel.isBorrowConfirmed())
-                            listViewAdapter.add(ordersModel);
+                        if (!ordersModel.isBorrowConfirmed()) {
+                            newListViewAdapter.add(ordersModel);
+                            ordersListView.setAdapter(newListViewAdapter);
+                        } else ordersListView.setAdapter(listViewAdapter);
                     }
                 }
+                UnpickedOrdersFragment.this.listViewAdapter = newListViewAdapter;
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 OrdersModel ordersModel;
-                listViewAdapter.clear();
+                OrdersListViewAdapter newListViewAdapter = new OrdersListViewAdapter(context, new ArrayList<>());
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
                     if (dataSnapshot.exists()) {
                         ordersModel = dataSnapshot.getValue(OrdersModel.class);
@@ -94,16 +96,20 @@ public class UnpickedOrdersFragment extends Fragment {
                                 && ordersModel.getDropLocation() != null && ordersModel.getHostAddress() != null
                                 && !ordersModel.getDropLocation().equals(ordersModel.getHostAddress())) { // if drop location is equal to host location then the order was meant for pick up not delivery
 
-                            if (!ordersModel.isBorrowConfirmed())
-                                listViewAdapter.add(ordersModel);
+                            if (!ordersModel.isBorrowConfirmed()) {
+                                newListViewAdapter.add(ordersModel);
+                                ordersListView.setAdapter(newListViewAdapter);
+                            } else ordersListView.setAdapter(listViewAdapter);
                         }
                     }
                 }
+                UnpickedOrdersFragment.this.listViewAdapter = newListViewAdapter;
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
                 OrdersModel ordersModel;
+                OrdersListViewAdapter newListViewAdapter = new OrdersListViewAdapter(context, new ArrayList<>());
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
                     if (dataSnapshot.exists()) {
                         ordersModel = dataSnapshot.getValue(OrdersModel.class);
@@ -111,17 +117,20 @@ public class UnpickedOrdersFragment extends Fragment {
                                 && ordersModel.getDropLocation() != null && ordersModel.getHostAddress() != null
                                 && !ordersModel.getDropLocation().equals(ordersModel.getHostAddress())) { // if drop location is equal to host location then the order was meant for pick up not delivery
 
-                            if (!ordersModel.isBorrowConfirmed())
-                                listViewAdapter.add(ordersModel);
+                            if (!ordersModel.isBorrowConfirmed()) {
+                                newListViewAdapter.add(ordersModel);
+                                ordersListView.setAdapter(newListViewAdapter);
+                            } else ordersListView.setAdapter(listViewAdapter);
                         }
                     }
                 }
+                UnpickedOrdersFragment.this.listViewAdapter = newListViewAdapter;
             }
 
             @Override
             public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 OrdersModel ordersModel;
-                listViewAdapter.clear();
+                OrdersListViewAdapter newListViewAdapter = new OrdersListViewAdapter(context, new ArrayList<>());
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
                     if (dataSnapshot.exists()) {
                         ordersModel = dataSnapshot.getValue(OrdersModel.class);
@@ -129,11 +138,14 @@ public class UnpickedOrdersFragment extends Fragment {
                                 && ordersModel.getDropLocation() != null && ordersModel.getHostAddress() != null
                                 && !ordersModel.getDropLocation().equals(ordersModel.getHostAddress())) { // if drop location is equal to host location then the order was meant for pick up not delivery
 
-                            if (!ordersModel.isBorrowConfirmed())
-                                listViewAdapter.add(ordersModel);
+                            if (!ordersModel.isBorrowConfirmed()) {
+                                newListViewAdapter.add(ordersModel);
+                                ordersListView.setAdapter(newListViewAdapter);
+                            } else ordersListView.setAdapter(listViewAdapter);
                         }
                     }
                 }
+                UnpickedOrdersFragment.this.listViewAdapter = newListViewAdapter;
             }
 
             @Override
@@ -142,4 +154,5 @@ public class UnpickedOrdersFragment extends Fragment {
             }
         });
     }
+
 }

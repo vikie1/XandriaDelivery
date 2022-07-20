@@ -6,6 +6,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
         android:orientation="vertical">
         
         <ImageView
@@ -55,13 +56,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginVertical="10dp"
+                android:layout_marginBottom="10dp"
                 android:id="@+id/select_btn"
                 android:background="@drawable/custom_button_background"
                 android:fontFamily="@font/play"
                 android:text="@string/select_for_delivery"
-                android:textColor="@color/black"
-                />
+                android:textColor="@color/black" />
         </LinearLayout>
         
     </LinearLayout>
