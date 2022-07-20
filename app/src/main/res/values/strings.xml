@@ -20,4 +20,17 @@
     <string name="GPSAlertDialogMessage">This app uses location permissions to get books near you</string>
     <string name="action_settings">OK</string>
     <string name="cancel">Cancel</string>
+    <string name="unpicked">Unpicked</string>
+    <string name="picked">Picked</string>
+    <string name="completed">Done</string>
+    <string name="pending">Pending</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="book_image">Book Image</string>
+    <string name="show_in_map">Show in map</string>
+    <string name="select_for_delivery">Select for delivery</string>
+    <string name="book_title"><![CDATA[<b>Book Title:</b>]]></string>
+    <string name="date_ordered"><![CDATA[<b>Date Ordered:</b>]]></string>
+    <string name="book_host"><![CDATA[<b>Book Host:</b>]]></string>
+    <string name="drop_contact"><![CDATA[<b>Drop Contact:</b>]]></string>
 </resources>

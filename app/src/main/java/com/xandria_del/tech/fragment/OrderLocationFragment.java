@@ -30,7 +30,8 @@ import com.xandria_del.tech.activity.order.OrderRouteActivity;
 import com.xandria_del.tech.util.GPSTracker;
 
 public class OrderLocationFragment extends Fragment implements LocationListener {
-    private com.xandria_del.tech.dto.Location orderLocation;
+    private com.xandria_del.tech.dto.Location hostLocation;
+    private com.xandria_del.tech.dto.Location dropLocation;
     private String bookTitle;
 
     private double currentLatitude, currentLongitude;
@@ -77,7 +78,8 @@ public class OrderLocationFragment extends Fragment implements LocationListener 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        orderLocation = getArguments() != null ? getArguments().getParcelable(OrderRouteActivity.ORDER_LOCATION) : null;
+        hostLocation = getArguments() != null ? getArguments().getParcelable(OrderRouteActivity.HOST_LOCATION) : null;
+        dropLocation = getArguments() != null ? getArguments().getParcelable(OrderRouteActivity.DROP_LOCATION) : null;
         bookTitle = getArguments().getString(OrderRouteActivity.BOOK_ORDERED);
         return inflater.inflate(R.layout.fragment_order_location, container, false);
     }
@@ -123,12 +125,22 @@ public class OrderLocationFragment extends Fragment implements LocationListener 
     }
 
     private void createTargetMarkers(GoogleMap googleMap){
-        if (orderLocation == null) return;
-        LatLng currentLocation = new LatLng(orderLocation.getLatitude(), orderLocation.getLongitude());
+        if (hostLocation == null || dropLocation == null ) return;
+        LatLng pickUpLocation = new LatLng(hostLocation.getLatitude(), hostLocation.getLongitude());
         googleMap.addMarker(
                 new MarkerOptions()
-                        .position(currentLocation)
-                        .title((bookTitle == null) ? "Target Book Location" : bookTitle)
+                        .position(pickUpLocation)
+                        .title("Host Location")
+                        .icon(
+                                bitmapDescriptorFromVector(context, R.drawable.ic_baseline_local_library_24)
+                        )
+        );
+
+        LatLng deliveryLocation = new LatLng(dropLocation.getLatitude(), dropLocation.getLongitude());
+        googleMap.addMarker(
+                new MarkerOptions()
+                        .position(deliveryLocation)
+                        .title("Drop Location")
                         .icon(
                                 bitmapDescriptorFromVector(context, R.drawable.ic_baseline_approval_24)
                         )

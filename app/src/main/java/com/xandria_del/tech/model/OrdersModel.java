@@ -1,10 +1,11 @@
 package com.xandria_del.tech.model;
 
-import android.location.Location;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
+
+import com.xandria_del.tech.dto.Location;
 
 import java.time.LocalDateTime;
 

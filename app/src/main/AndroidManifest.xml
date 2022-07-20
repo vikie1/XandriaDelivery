@@ -16,6 +16,7 @@
         android:roundIcon="@drawable/xandria"
         android:supportsRtl="true"
         android:theme="@style/Theme.XandriaDelivery"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
         <meta-data
