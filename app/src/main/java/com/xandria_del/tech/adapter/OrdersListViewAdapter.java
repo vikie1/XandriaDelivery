@@ -60,11 +60,21 @@ public class OrdersListViewAdapter extends ArrayAdapter<OrdersModel> {
                 getContext().getString(R.string.drop_contact).concat(" ").concat(order.getDeliveryContact()),
                 HtmlCompat.FROM_HTML_MODE_COMPACT
         ));
+        if (order.isBookedForDelivery() &&
+                !order.getUserId().equals(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail())) {
+            selectedItem.setVisibility(View.GONE);
+            bookHost.setText(HtmlCompat.fromHtml(
+                    getContext().getString(R.string.booked_by).concat(" ").concat(order.getUserId()),
+                    HtmlCompat.FROM_HTML_MODE_COMPACT
+            ));
+        } else {
+            bookHost.setText(HtmlCompat.fromHtml(
+                    getContext().getString(R.string.book_host).concat(" ").concat(order.getHostLocationUserId()),
+                    HtmlCompat.FROM_HTML_MODE_COMPACT
+            ));
+        }
 
         if (order.isBorrowConfirmed()) selectedItem.setVisibility(View.GONE);
-        else if (order.isBookedForDelivery() &&
-                !order.getUserId().equals(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()))
-            selectedItem.setVisibility(View.GONE);
         else {
             if (order.isBookedForDelivery()) selectedItem.setText(getContext().getString(R.string.cancel));
 
