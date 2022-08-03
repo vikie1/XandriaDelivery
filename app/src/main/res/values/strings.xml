@@ -42,4 +42,11 @@
     <string name="points"><![CDATA[<b>Points:</b>]]></string>
     <string name="welcome">Welcome</string>
     <string name="logo">Logo</string>
+    <string name="account_profile">Account Profile</string>
+    <string name="email"><![CDATA[<b>Email:</b>]]></string>
+    <string name="phone"><![CDATA[<b>Phone:</b>]]></string>
+    <string name="reset_password">Reset Password</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="cancel_button">Cancel Button</string>
+    <string name="password">Password</string>
 </resources>

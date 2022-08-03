@@ -42,6 +42,7 @@ import com.xandria_del.tech.constants.LoggedInUser;
 import com.xandria_del.tech.fragment.CompletedOrdersFragment;
 import com.xandria_del.tech.fragment.PendingOrdersFragment;
 import com.xandria_del.tech.fragment.PickedOrdersFragment;
+import com.xandria_del.tech.fragment.ProfileFragment;
 import com.xandria_del.tech.fragment.UnpickedOrdersFragment;
 
 import java.util.Objects;
@@ -160,8 +161,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent = new Intent(this, LoginActivity.class);
                 break;
             case R.id.nav_profile:
-//                fragment = new ProfileFragment();
-                Toast.makeText(this, "Coming soon", Toast.LENGTH_SHORT).show();
+                fragment = new ProfileFragment();
                 break;
             default:
                 fragment = new UnpickedOrdersFragment();
