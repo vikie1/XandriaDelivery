@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -27,15 +28,15 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.xandria_del.tech.R;
 import com.xandria_del.tech.activity.order.OrderRouteActivity;
-import com.xandria_del.tech.util.GPSTracker;
+import com.xandria_del.tech.util.LocationUtils;
 
-public class OrderLocationFragment extends Fragment implements LocationListener {
+public class OrderLocationFragment extends Fragment implements LocationUtils.LocationPermissionResult {
     private com.xandria_del.tech.dto.Location hostLocation;
     private com.xandria_del.tech.dto.Location dropLocation;
     private String bookTitle;
 
     private double currentLatitude, currentLongitude;
-    private GPSTracker gpsTracker;
+    private LocationUtils locationUtils;
     private GoogleMap googleMap;
     private Marker currentLocationMarker;
 
@@ -45,7 +46,7 @@ public class OrderLocationFragment extends Fragment implements LocationListener 
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         this.context = context;
-        gpsTracker = new GPSTracker(context);
+        locationUtils = new LocationUtils(OrderLocationFragment.this, context, OrderLocationFragment.this);
     }
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
@@ -60,14 +61,15 @@ public class OrderLocationFragment extends Fragment implements LocationListener 
          * user has installed Google Play services and returned to the app.
          */
         @Override
-        public void onMapReady(GoogleMap googleMap) {
-            if(gpsTracker.getIsGPSTrackingEnabled()){
-                currentLatitude = gpsTracker.getLatitude();
-                currentLongitude = gpsTracker.getLongitude();
-            } else gpsTracker.showSettingsAlert();
-
+        public void onMapReady(@NonNull GoogleMap googleMap) {
             OrderLocationFragment.this.googleMap = googleMap;
-            createMarkerForCurrentLoc();
+
+            LatLng latLng = locationUtils.getLatLng();
+            if (latLng != null) {
+                currentLatitude = latLng.latitude;
+                currentLongitude = latLng.longitude;
+                createMarkerForCurrentLoc();
+            }
 
             createTargetMarkers(googleMap);
         }
@@ -96,32 +98,11 @@ public class OrderLocationFragment extends Fragment implements LocationListener 
 
     public void createMarkerForCurrentLoc(){
         if(googleMap != null) {
-
             if (currentLocationMarker != null) currentLocationMarker.remove();
-
             LatLng currentLocation = new LatLng(currentLatitude, currentLongitude);
             currentLocationMarker = googleMap.addMarker(new MarkerOptions().position(currentLocation).title("Current location"));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 10));
         }
-    }
-
-    @Override
-    public void onLocationChanged(@NonNull Location location) {
-        currentLatitude = location.getLatitude();
-        currentLongitude = location.getLongitude();
-        createMarkerForCurrentLoc();
-    }
-
-    @Override
-    public void onProviderEnabled(@NonNull String provider) {
-        LocationListener.super.onProviderEnabled(provider);
-        gpsTracker = new GPSTracker(context);
-
-        if(gpsTracker.getIsGPSTrackingEnabled()){
-            currentLatitude = gpsTracker.getLatitude();
-            currentLongitude = gpsTracker.getLongitude();
-            createMarkerForCurrentLoc();
-        } else gpsTracker.showSettingsAlert();
     }
 
     private void createTargetMarkers(GoogleMap googleMap){
@@ -155,5 +136,18 @@ public class OrderLocationFragment extends Fragment implements LocationListener 
         Canvas canvas = new Canvas(bitmap);
         vectorDrawable.draw(canvas);
         return BitmapDescriptorFactory.fromBitmap(bitmap);
+    }
+
+    @Override
+    public void onPermissionGranted(LatLng latLng) {
+        currentLatitude = latLng.latitude;
+        currentLongitude = latLng.longitude;
+
+        createMarkerForCurrentLoc();
+    }
+
+    @Override
+    public void onPermissionDeclined() {
+        Toast.makeText(context, "App won't function optimum without location permission", Toast.LENGTH_LONG).show();
     }
 }
