@@ -32,4 +32,14 @@
     <string name="book_host"><![CDATA[<b>Book Host:</b>]]></string>
     <string name="drop_contact"><![CDATA[<b>Drop Contact:</b>]]></string>
     <string name="booked_by"><![CDATA[<b>Booked by:</b>]]></string>
+    <string name="home">Home</string>
+    <string name="account">Account</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="nav_open_drawer">Open Navigation  Drawer</string>
+    <string name="nav_close_drawer">Close Navigation Drawer</string>
+    <string name="name"><![CDATA[<b>Name:</b>]]></string>
+    <string name="points"><![CDATA[<b>Points:</b>]]></string>
+    <string name="welcome">Welcome</string>
+    <string name="logo">Logo</string>
 </resources>

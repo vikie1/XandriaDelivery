@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/custom_button_background.xml" value="0.1715" />
+        <entry key="app/src/main/res/drawable/ic_baseline_logout_24.xml" value="0.194" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.17028985507246377" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_order_route.xml" value="0.17028985507246377" />
@@ -15,11 +16,14 @@
         <entry key="app/src/main/res/layout/fragment_unpicked_orders.xml" value="0.17028985507246377" />
         <entry key="app/src/main/res/layout/head_section_layout.xml" value="0.1693840579710145" />
         <entry key="app/src/main/res/layout/list_view_with_image.xml" value="0.22445255474452555" />
+        <entry key="app/src/main/res/layout/navigation_header.xml" value="0.1693840579710145" />
         <entry key="app/src/main/res/layout/phone_verification.xml" value="0.1693840579710145" />
         <entry key="app/src/main/res/layout/request_email_layout.xml" value="0.1693840579710145" />
+        <entry key="app/src/main/res/layout/toolbar_main.xml" value="0.1693840579710145" />
+        <entry key="app/src/main/res/menu/menu_nav.xml" value="0.190625" />
       </map>
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17_PREVIEW" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>
