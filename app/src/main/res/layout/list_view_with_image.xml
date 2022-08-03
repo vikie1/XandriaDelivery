@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,6 +49,7 @@
                 android:layout_marginVertical="10dp"
                 android:id="@+id/show_in_map"
                 android:background="@drawable/custom_button_background"
+                app:backgroundTint="@null"
                 android:fontFamily="@font/play"
                 android:text="@string/show_in_map"
                 android:textColor="@color/black"
@@ -59,6 +61,7 @@
                 android:layout_marginBottom="10dp"
                 android:id="@+id/select_btn"
                 android:background="@drawable/custom_button_background"
+                app:backgroundTint="@null"
                 android:fontFamily="@font/play"
                 android:text="@string/select_for_delivery"
                 android:textColor="@color/black" />

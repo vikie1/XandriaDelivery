@@ -7,15 +7,19 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.17028985507246377" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_order_route.xml" value="0.17028985507246377" />
+        <entry key="app/src/main/res/layout/activity_registration.xml" value="0.1693840579710145" />
         <entry key="app/src/main/res/layout/fragment_completed_orders.xml" value="0.17028985507246377" />
         <entry key="app/src/main/res/layout/fragment_order_location.xml" value="0.17028985507246377" />
         <entry key="app/src/main/res/layout/fragment_pending_orders.xml" value="0.17028985507246377" />
         <entry key="app/src/main/res/layout/fragment_picked_orders.xml" value="0.1921875" />
         <entry key="app/src/main/res/layout/fragment_unpicked_orders.xml" value="0.17028985507246377" />
+        <entry key="app/src/main/res/layout/head_section_layout.xml" value="0.1693840579710145" />
         <entry key="app/src/main/res/layout/list_view_with_image.xml" value="0.22445255474452555" />
+        <entry key="app/src/main/res/layout/phone_verification.xml" value="0.1693840579710145" />
+        <entry key="app/src/main/res/layout/request_email_layout.xml" value="0.1693840579710145" />
       </map>
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>

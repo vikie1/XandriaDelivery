@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".activity.user.LoginActivity">
     <LinearLayout
         android:layout_width="match_parent"
@@ -64,10 +65,10 @@
             android:layout_margin="20dp"
             android:id="@+id/LoginBtn"
             android:background="@drawable/custom_button_background"
+            app:backgroundTint="@null"
             android:fontFamily="@font/play"
             android:text="@string/login"
-            android:textColor="@color/black"
-            />
+            android:textColor="@color/black" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

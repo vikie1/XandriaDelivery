@@ -145,6 +145,7 @@
             android:layout_margin="20dp"
             android:id="@+id/RegisterBtn"
             android:background="@drawable/custom_button_background"
+            app:backgroundTint="@null"
             android:fontFamily="@font/play"
             android:text="@string/register"
             android:textColor="@color/black"
