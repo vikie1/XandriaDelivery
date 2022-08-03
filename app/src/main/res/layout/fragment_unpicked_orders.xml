@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:divider="@android:color/transparent"
         android:dividerHeight="10dp"
+        android:paddingHorizontal="10dp"
         android:id="@+id/orders_list"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
