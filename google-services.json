@@ -1,0 +1,133 @@
+{
+  "project_info": {
+    "project_number": "533010914329",
+    "firebase_url": "https://xandria-34023-default-rtdb.firebaseio.com",
+    "project_id": "xandria-34023",
+    "storage_bucket": "xandria-34023.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533010914329:android:901d3466c07035af759e88",
+        "android_client_info": {
+          "package_name": "com.xandria.tech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "533010914329-c6ev6qtuiqfbqv9a8fe916cnp295h644.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.xandria.tech",
+            "certificate_hash": "f2c31b45045588e49bee395631cbad31371b413f"
+          }
+        },
+        {
+          "client_id": "533010914329-kijd042mdto0dchbjl95mtef765e4g9e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.xandria.tech",
+            "certificate_hash": "f124c75f1b4d59761c2929807af068666607e780"
+          }
+        },
+        {
+          "client_id": "533010914329-n6sa6tfcc5qv8rdm2sluqk83evmbjee0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.xandria.tech",
+            "certificate_hash": "c6120c04bec0b453b45492ea020d70daccf478d1"
+          }
+        },
+        {
+          "client_id": "533010914329-tr7cvmaf08fq8n5qtb5nd404vdbtvqc3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.xandria.tech",
+            "certificate_hash": "d2c2bc3247af1c81a6f19faa2dcad69f868b3e32"
+          }
+        },
+        {
+          "client_id": "533010914329-annuboumecbev4lhiks3l9bacjtn56f8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1ptAdZZkjKBZL831rjYd3l5ezdt2D6j8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "533010914329-annuboumecbev4lhiks3l9bacjtn56f8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533010914329:android:f638fc3c8487a2bb759e88",
+        "android_client_info": {
+          "package_name": "com.xandria_del.tech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "533010914329-fq9jl68h66bjmir047on0p35ps39v3r2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.xandria_del.tech",
+            "certificate_hash": "be5db66cca3967817f121d42ea36b9ad9aba6aeb"
+          }
+        },
+        {
+          "client_id": "533010914329-ggscp0heu1p9luubamvg158gb6v1200t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.xandria_del.tech",
+            "certificate_hash": "d2c2bc3247af1c81a6f19faa2dcad69f868b3e32"
+          }
+        },
+        {
+          "client_id": "533010914329-tn9bb50lrnj9v7otsjuv0nkjpo2p67lv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.xandria_del.tech",
+            "certificate_hash": "f124c75f1b4d59761c2929807af068666607e780"
+          }
+        },
+        {
+          "client_id": "533010914329-uein7i1tb32h4ab6nq348mbq1gnfibjl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.xandria_del.tech",
+            "certificate_hash": "c6120c04bec0b453b45492ea020d70daccf478d1"
+          }
+        },
+        {
+          "client_id": "533010914329-annuboumecbev4lhiks3l9bacjtn56f8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1ptAdZZkjKBZL831rjYd3l5ezdt2D6j8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "533010914329-annuboumecbev4lhiks3l9bacjtn56f8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
